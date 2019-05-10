@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.baidu.com">
+                <img src="{% static '/images/test.jpg' %}" width="30px" height="40px">
+            </a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav" role="navigation">
+                <li><a href="{% url 'blog:blog_list' %}">BLOG</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="margin-right:20px">
+                {% if user.is_authenticated %}
+                    <li>
+                        <div class="dropdown" style="margin-top: 8px;">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown">
+                                {{ user.username }}<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'account:password_change' %}">Change Password</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'account:user_logout'%}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'account:user_login' %}">Login</a></li>
+                    <li><a href="{% url 'account:user_register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/jquery-3.4.1.js' %}"></script>
