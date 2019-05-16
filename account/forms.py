@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile
+from .models import UserInfo
 
 
 # 提交表单之后, 不会对数据库进行修改, 就继承 forms.Form
@@ -30,3 +31,15 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ("phone", "birth")
+
+
+class UserInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ("school", "company", "profession", "address", "aboutme", "photo")
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("email",)
